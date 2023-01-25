@@ -1,0 +1,100 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Fri Jan 20 22:07:53 2023
+
+@author: rolfe
+"""
+
+## IDEAS
+## - make an function for delaying the root-change for the chord - ok
+##    
+## - tempo tap functionality 
+## - make an add 7 function
+## 
+## - make an convert to minor function (always 3ed note in a chord?)
+##
+## - realized that FCB1010 = not polyfonic 
+# strategy1
+### 1. chord knob is pressed    
+### 2. chord is copied to global 
+### 3. bass note is pressed
+### 4. chord in global is played once
+### 5. reset flag so no new chord is trigged
+
+# NB! scb fires CC control:0 ch:0 val:36 accidentaly
+# we therefore avoid control=0
+#sus 2 + 7 = 9 
+#    having an add 7 function can simplify
+
+### NEW CONTROLS
+# convert to minor
+# add7
+# add6 or flat the 7th
+# add 2
+# add 9
+# sharpen 7
+# flat 7    (maj) 
+
+### fcb chords
+#### C_maj,   C_aug,  Cdim,   ,C6,      C9
+#### C_major, C_sus2, C_minor, C7_minor, C7
+
+# I need control that plays fex: dm7 when playing G (slash chord)
+
+
+# the 12 step pedal board has velocity and tilt sensitive and pressure control
+# this can be used to add extra parameters ... like assign a chord root in "silent mode"
+
+# chord sequence mode ... [C,F,G] lpp trough them with a pedal for fast songs ..
+
+
+### NEXT UP: make a panic button and a keyboard interceptor
+### maybe sending panic message by a CC value message
+
+
+
+mido.ports.multi_receive(ports, yield_ports=False, block=True)
+Receive messages from multiple ports.
+
+Generates messages from ever input port. The ports are polled in random order for fairness, 
+and all messages from each port are yielded before moving on to the next port.
+
+If yield_ports=True, (port, message) is yielded instead of just the message.
+
+If block=False only pending messages will be yielded.
+https://mido.readthedocs.io/en/latest/lib.html
+
+
+
+#### IDEA : make a system based on the Stradella system by stacking harmonies 
+# or any other system, the app must detect several knobs at the same time ...
+
+https://accordionchords.com/tutorials/stradella-xtensions-harmonic-technique-for-the-accordion/
+
+tip: Since many jazz chords are actually "stacked" triads, 
+one can often play them using two buttons
+
+What is major 3rd and minor 3rd?
+A minor interval has one less semitone than a major interval. 
+For example: since 
+C to E is a major third (4 half steps), 
+C to Eb is a minor third (3 half steps). 
+
+
+In this case, the ports are device ports, and are connected to some sort of (physical or virtual) MIDI device, but a port can be anything. For example, you can use a MultiPort receive messages from multiple ports as if they were one:
+
+from mido.ports import MultiPort
+
+...
+multi = MultiPort([inport1, inport2, inport3])
+for msg in multi:
+    print(msg)
+
+
+#### make arpegiator ...
+
+
+
+
+
+    
